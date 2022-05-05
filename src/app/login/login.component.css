@@ -1,0 +1,29 @@
+
+.imgEmail{
+  width: 40px;
+  height: 30px;
+}
+
+.imgPW{
+  margin-right: 5px;
+  width: 30px;
+  height: 30px;
+  }
+
+.container {
+  margin-top: 150px;
+  margin-left: 505px;
+  display: flex;
+}
+
+.container2 {
+  margin-left: 510px;
+  display: flex;
+}
+
+.bntSair{
+  margin-left: 545px;
+}
+.bntEntrar{
+  margin-left: 38px;
+}

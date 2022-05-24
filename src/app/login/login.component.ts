@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  filter!: String;
-
   constructor() { }
 
   ngOnInit(): void {

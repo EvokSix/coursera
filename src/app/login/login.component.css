@@ -10,13 +10,13 @@
   height: 30px;
   }
 
-.container {
-  margin-top: 150px;
+.campoEmail {
+  margin-top: 10px;
   margin-left: 505px;
   display: flex;
 }
 
-.container2 {
+.campoSenha {
   margin-left: 510px;
   display: flex;
 }

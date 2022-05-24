@@ -1,14 +1,22 @@
-<div class="container">
-  <img class="imgEmail" matListAvatar src = 'assets\images\emailicon.png'>
-  <input type="email" placeholder="abc@mail..." autofocus>
-</div>
-<br>
-<div class="container2">
-  <img class="imgPW" matListAvatar src = 'assets\images\senhaicon.jpg'>
-  <input type="password" placeholder="******">
-</div>
-<br>
-<div >
-  <button class="bntSair" mat-raised-button color="warn" routerLink="">Sair</button>
-  <button class="bntEntrar" mat-raised-button color="primary" routerLink="/menu">Entrar</button>
-</div>
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <div>
+    <div>
+      <h3>Login</h3>
+      <hr>
+    </div>
+  </div>
+    <div class="campoEmail">
+      <img class="imgEmail" matListAvatar src='assets\images\emailicon.png'>
+      <input type="email" placeholder="abc@mail..." autofocus>
+    </div>
+    <br>
+    <div class="campoSenha">
+      <img class="imgPW" matListAvatar src='assets\images\senhaicon.jpg'>
+      <input type="password" placeholder="******">
+    </div>
+    <br>
+    <div>
+      <button class="bntSair" mat-raised-button color="warn" routerLink="">Sair</button>
+      <button class="bntEntrar" mat-raised-button color="primary" routerLink="/menu">Entrar</button>
+    </div>
+  </div>

@@ -1,13 +1,23 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { flyInOut, expand } from '../animations/app.animation';
+
 import { Book } from '../shared/book';
 import { BookService } from '../services/book.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+    animations: [
+      flyInOut(),
+      expand()
+    ]
 })
 export class MenuComponent implements OnInit {
 

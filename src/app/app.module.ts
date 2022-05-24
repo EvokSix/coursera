@@ -29,7 +29,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { BookService } from './services/book.service';
+import { UserService } from './services/user.service';
 import { baseURL } from './shared/baseurl';
+import { FullBookComponent } from './full-book/full-book.component';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import { baseURL } from './shared/baseurl';
     MenuComponent,
     HeaderComponent,
     FooterComponent,
+    FullBookComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,7 @@ import { baseURL } from './shared/baseurl';
     MatProgressSpinnerModule,
     HttpClientModule
   ],
-  providers: [BookService,ProcessHTTPMsgService,
+  providers: [UserService, BookService,ProcessHTTPMsgService,
     { provide: 'baseURL', useValue: baseURL }],
   bootstrap: [AppComponent]
 })

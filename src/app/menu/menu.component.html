@@ -5,7 +5,7 @@
   </div>
   <div fxFlex *ngIf="books" [@expand]>
     <mat-grid-list cols="2" rowHeight="200px">
-      <mat-grid-tile *ngFor="let book of books" >
+      <mat-grid-tile *ngFor="let book of books" [routerLink]="['/fullbook', book.id]" appHighlight>
         <img height="200px" src="{{ baseURL + book.image}}" alt={{book.name}}>
         <mat-grid-tile-footer>
           <h1>{{book.name | uppercase}}</h1>

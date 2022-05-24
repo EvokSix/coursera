@@ -5,4 +5,5 @@ export class Book {
   image!: string;
   author!: string;
   category!: string;
+  description!: string;
 }

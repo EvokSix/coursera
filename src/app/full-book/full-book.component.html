@@ -1,0 +1,47 @@
+<div class="container" fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column"
+  fxLayoutAlign.gt-md="space-around center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+
+  <div fxFlex="10">
+    <mat-card-actions>
+      <span class="flex-spacer"></span>
+      <button mat-button [routerLink]="['/fullbook',prev]">
+        <span class="fa fa-chevron-left fa-lg"></span>
+      </button>
+    </mat-card-actions>
+  </div>
+  <div fxFlex="30" *ngIf="book" [@visibility]="visibility" [@expand]>
+    <div>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <h3>{{book.name | uppercase}}</h3>
+          </mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{baseURL + book.image}}" width="320" height="450" alt={{book.name}}>
+        <mat-card-content>
+          <p>{{book.description}}
+          </p>
+          <button mat-button [routerLink]="['/menu']">Voltar</button>
+          <button mat-button>Lido</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div fxFlex="10">
+    <mat-card-actions>
+      <span class="flex-spacer"></span>
+      <button mat-button [routerLink]="['/fullbook',next]">
+        <span class="fa fa-chevron-right fa-lg"></span>
+      </button>
+    </mat-card-actions>
+  </div>
+
+  <div [hidden]="book || errMess">
+    <mat-spinner style="margin-left: 20%;"></mat-spinner>
+    <h4>Loading...Prease Wait!</h4>
+  </div>
+  <div fxFlex *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
+</div>

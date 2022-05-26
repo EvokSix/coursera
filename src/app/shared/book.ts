@@ -4,6 +4,7 @@ export class Book {
   name!: string;
   image!: string;
   author!: string;
+  pages!: number;
   category!: string;
   description!: string;
 }

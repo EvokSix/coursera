@@ -1,21 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { LoginComponent } from '../login/login.component';
+import { Router } from '@angular/router';
+import { ControleLoginService } from '../services/controle-login.service';
+
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  statusAtual: boolean = false;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private controlaLoginService: ControleLoginService,
+    private router: Router) {
+    this.statusAtual = this.controlaLoginService.isSidebarVisible;
+    console.log(this.statusAtual);
+    if(!this.statusAtual){
+      this.router.navigate(["login"]);
+    }
+  }
 
   ngOnInit(): void {
+    this.controlaLoginService.sidebarVisibilityChange.subscribe((userLogged) => {
+      this.statusAtual = userLogged;
+      if(!userLogged){
+        this.router.navigate(["login"]);
+      }
+    });
   }
 
-  openLoginForm(){
-    this.dialog.open(LoginComponent, {width: '500px', height: '450px'});
-  }
+  deslogaUsuario(){
+    this.controlaLoginService.toggleSidebarVisibility();
+    console.log(this.statusAtual);
 
+  }
 }

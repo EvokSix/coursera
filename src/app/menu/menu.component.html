@@ -8,10 +8,18 @@
       <mat-grid-tile *ngFor="let book of books" [routerLink]="['/fullbook', book.id]" appHighlight>
         <img height="200px" src="{{ baseURL + book.image}}" alt={{book.name}}>
         <mat-grid-tile-footer>
-          <h1>{{book.name | uppercase}}</h1>
+          <h1>{{book.name}}</h1>
         </mat-grid-tile-footer>
       </mat-grid-tile>
     </mat-grid-list>
+  </div>
+  <div [hidden]="books || errMess">
+    <mat-spinner style="margin-left: 3%;"></mat-spinner>
+    <h4>Loading...Prease Wait!</h4>
+  </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
   </div>
   <div>
     <button class="bntSair" mat-raised-button color="warn" routerLink="">Sair</button>

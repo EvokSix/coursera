@@ -1,51 +1,64 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { UserService } from '../services/user.service';
 
 import { User } from '../shared/user';
+import { ControleLoginService } from '../services/controle-login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
-
   users!: User[];
   logUser!: User;
   errMess!: string;
   loginForm!: FormGroup;
-  form!: FormGroup;
 
-  @ViewChild('loginForm') loginFormDirective!:NgForm;
-
-  constructor(private userService: UserService,
+  constructor(
+    private userService: UserService,
+    private controlaLoginService: ControleLoginService,
     private fb: FormBuilder,
-    @Inject('baseURL') public baseURL: HttpClient) { }
+    private router: Router,
+    @Inject('baseURL') public baseURL: HttpClient)
+   {}
 
   ngOnInit(): void {
-  }
+    this.userService.getUsers().subscribe(
+      (users) => (this.users = users),
+      (errmess) => (this.errMess = <any>errmess)
+    );
+    this.createForm();
+    }
 
-  createForm(){
-    this.form = this.fb.group({
+  createForm() {
+    this.loginForm = this.fb.group({
+      id: '',
+      name: '',
       mail: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      category: [''],
+      point: 0,
     });
   }
 
-  validar(){
-    this.createForm();
-    this.userService.getUsers()
-      .subscribe((users) => this.users = users,
-      errmess => this.errMess = <any>errmess);
+  validar() {
     this.logUser = new User();
-    this.logUser = this.form.value;
-    console.log(this.logUser.mail);
-    console.log(this.logUser.password);
+    this.logUser.mail = this.loginForm.get('mail')?.value;
+    this.logUser.password = this.loginForm.get('password')?.value;
+    for (let index = 0; index < this.users.length; index++) {
+      if (
+        this.logUser.mail == this.users[index].mail &&
+        this.logUser.password == this.users[index].password
+      ) {
+        this.controlaLoginService.setUsuarioLogado(this.users[index]);
+        this.controlaLoginService.toggleSidebarVisibility();
+        this.router.navigate(["menu"]);
+      }
+    }
   }
-
 }

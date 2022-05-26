@@ -14,18 +14,27 @@
       <mat-card>
         <mat-card-header>
           <mat-card-title>
-            <h3>{{book.name | uppercase}}</h3>
+            <h4>{{book.name}}</h4>
           </mat-card-title>
         </mat-card-header>
         <img mat-card-image src="{{baseURL + book.image}}" width="320" height="450" alt={{book.name}}>
         <mat-card-content>
-          <p>{{book.description}}
-          </p>
+          <h5>Autor(a): {{book.author}}</h5>
+          <h6>Categoria: {{book.category}}</h6>
+          <p>{{book.description}}</p>
           <button mat-button [routerLink]="['/menu']">Voltar</button>
-          <button mat-button>Lido</button>
+          <button mat-button (click)="marcarLivroComoLido()">Lido</button>
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
+  <div [hidden]="book || errMess">
+    <mat-spinner style="margin-left: 20%;"></mat-spinner>
+    <h4>Loading...Prease Wait!</h4>
+  </div>
+  <div fxFlex *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
   </div>
   <div fxFlex="10">
     <mat-card-actions>
@@ -34,14 +43,5 @@
         <span class="fa fa-chevron-right fa-lg"></span>
       </button>
     </mat-card-actions>
-  </div>
-
-  <div [hidden]="book || errMess">
-    <mat-spinner style="margin-left: 20%;"></mat-spinner>
-    <h4>Loading...Prease Wait!</h4>
-  </div>
-  <div fxFlex *ngIf="errMess">
-    <h2>Error</h2>
-    <h4>{{errMess}}</h4>
   </div>
 </div>

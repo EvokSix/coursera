@@ -18,6 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
@@ -33,6 +34,8 @@ import { UserService } from './services/user.service';
 import { baseURL } from './shared/baseurl';
 import { FullBookComponent } from './full-book/full-book.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { RankingComponent } from './ranking/ranking.component';
+import { ControleLoginService } from './services/controle-login.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     HeaderComponent,
     FooterComponent,
     FullBookComponent,
-    HighlightDirective
+    HighlightDirective,
+    RankingComponent
   ],
   imports: [
     BrowserModule,
@@ -64,9 +68,10 @@ import { HighlightDirective } from './directives/highlight.directive';
     MatSlideToggleModule,
     MatSliderModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule
   ],
-  providers: [UserService, BookService,ProcessHTTPMsgService,
+  providers: [UserService, BookService,ProcessHTTPMsgService,ControleLoginService,
     { provide: 'baseURL', useValue: baseURL }],
   bootstrap: [AppComponent]
 })

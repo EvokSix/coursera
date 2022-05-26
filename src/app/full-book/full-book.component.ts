@@ -5,9 +5,12 @@ import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
 
 import { BookService } from '../services/book.service';
+import { ControleLoginService } from '../services/controle-login.service';
+
 import { flyInOut, expand, visibility } from '../animations/app.animation';
 
 import { Book } from '../shared/book';
+import { User } from '../shared/user';
 
 @Component({
   selector: 'app-full-book',
@@ -25,7 +28,9 @@ import { Book } from '../shared/book';
 })
 export class FullBookComponent implements OnInit {
 
+  valorCalculado:number = 1;
   book!: Book;
+  user!: User;
   errMess!: string;
   bookIds!: string[];
   prev!: string;
@@ -34,6 +39,7 @@ export class FullBookComponent implements OnInit {
   visibility = 'shown';
 
   constructor(private bookService: BookService,
+    private controleLoginService: ControleLoginService,
     private route: ActivatedRoute,
     private location: Location,
     @Inject('baseURL') public baseURL:HttpClient) { }
@@ -55,6 +61,18 @@ export class FullBookComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  marcarLivroComoLido(){
+    alert("Livro marcado como lido!");
+    this.user = this.controleLoginService.getUsuarioLogado();
+    console.log(this.book);
+    this.user.point += this.valorCalculado;
+
+  }
+
+  calculaPontos(){
+
   }
 
 }

@@ -1,16 +1,19 @@
 <mat-toolbar color="primary">
   <span><img src="/assets/images/logo.jpg" height=30 width=41></span>
-  <span class="flex-spacer"></span>
+  <div *ngIf="statusAtual">
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Pontuação</button>
+      <button mat-menu-item [routerLink]="['/ranking']">Ranking</button>
+    </mat-menu>
+  </div>
+    <span class="flex-spacer"></span>
+    <a *ngIf="statusAtual" mat-button (click)="deslogaUsuario()"><span class="fa fa-sign-out fa-lg"></span>Logout</a>
 </mat-toolbar>
 
-<div class="container jumbotron"
-    fxLayout="row"
-    fxLayout.sm="column"
-    fxLayout.xs="column"
-    fxLayoutAlign.xs="start center"
-    fxLayoutAlign.sm="start center"
-    fxLayoutAlign.gt-sm="center center"
-    fxLayoutGap="10px">
+<div class="container jumbotron" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+  fxLayoutAlign.xs="start center" fxLayoutAlign.sm="start center" fxLayoutAlign.gt-sm="center center"
+  fxLayoutGap="10px">
 
   <div fxFlex fxFlex.gt-sm="50%">
     <h1>Projeto Esse eu já li</h1>

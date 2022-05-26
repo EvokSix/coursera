@@ -1,0 +1,24 @@
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <div>
+    <div>
+      <h3>Ranking</h3>
+      <hr>
+    </div>
+    <div class="pontuacao" *ngIf="user">
+      <p>{{user.point}} Pontos
+    </p>
+    <p>0 Troféus</p>
+    </div>
+    <div style="margin-left: 40%;" [hidden]="user || errMess">
+      <mat-spinner style="margin-left: 3%;"></mat-spinner>
+      <h4>Loading...Prease Wait!</h4>
+    </div>
+    <div *ngIf="errMess">
+      <h2>Error</h2>
+      <h4>{{errMess}}</h4>
+    </div>
+  </div>
+    <div>
+      <button type="submit" class="bntEntrar" mat-raised-button color="primary" [routerLink]="['/menu']">Voltar</button>
+    </div>
+</div>

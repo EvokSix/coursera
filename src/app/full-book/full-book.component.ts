@@ -11,6 +11,7 @@ import { flyInOut, expand, visibility } from '../animations/app.animation';
 
 import { Book } from '../shared/book';
 import { User } from '../shared/user';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-full-book',
@@ -28,7 +29,7 @@ import { User } from '../shared/user';
 })
 export class FullBookComponent implements OnInit {
 
-  valorCalculado:number = 1;
+  valorCalculado:number = 0;
   book!: Book;
   user!: User;
   errMess!: string;
@@ -41,6 +42,7 @@ export class FullBookComponent implements OnInit {
   constructor(private bookService: BookService,
     private controleLoginService: ControleLoginService,
     private route: ActivatedRoute,
+    private userService: UserService,
     private location: Location,
     @Inject('baseURL') public baseURL:HttpClient) { }
 
@@ -64,15 +66,18 @@ export class FullBookComponent implements OnInit {
   }
 
   marcarLivroComoLido(){
-    alert("Livro marcado como lido!");
     this.user = this.controleLoginService.getUsuarioLogado();
-    console.log(this.book);
+    this.calculaPontos();
     this.user.point += this.valorCalculado;
-
+    this.valorCalculado = 0;
+    this.userService.putUser(this.user).subscribe();
+    alert("Livro marcado como lido!");
   }
 
   calculaPontos(){
-
+    for(let i = 0; i<=this.book.pages; i+=100){
+      this.valorCalculado += 1;
+    }
   }
 
 }

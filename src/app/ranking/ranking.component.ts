@@ -19,7 +19,7 @@ export class RankingComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(
-      (users) => (this.users = users),
+      (users) => (this.users = users).sort((a,b) => a.point > b.point ? -1 : 1),
       (errmess) => (this.errMess = <any>errmess)
     );
   }

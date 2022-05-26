@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   constructor(private controlaLoginService: ControleLoginService,
     private router: Router) {
     this.statusAtual = this.controlaLoginService.isSidebarVisible;
-    console.log(this.statusAtual);
     if(!this.statusAtual){
       this.router.navigate(["login"]);
     }

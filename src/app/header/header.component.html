@@ -3,7 +3,7 @@
   <div *ngIf="statusAtual">
     <button mat-button [matMenuTriggerFor]="menu">Menu</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Pontuação</button>
+      <button mat-menu-item [routerLink]="['/pontuacao']">Pontuação</button>
       <button mat-menu-item [routerLink]="['/ranking']">Ranking</button>
     </mat-menu>
   </div>

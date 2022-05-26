@@ -36,6 +36,7 @@ import { FullBookComponent } from './full-book/full-book.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { RankingComponent } from './ranking/ranking.component';
 import { ControleLoginService } from './services/controle-login.service';
+import { PontuacaoComponent } from './pontuacao/pontuacao.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ControleLoginService } from './services/controle-login.service';
     FooterComponent,
     FullBookComponent,
     HighlightDirective,
-    RankingComponent
+    RankingComponent,
+    PontuacaoComponent
   ],
   imports: [
     BrowserModule,
